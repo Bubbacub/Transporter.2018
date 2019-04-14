@@ -1,0 +1,49 @@
+﻿<!-- I wanted to inject separate html pages into tasksgrid.html, for search filters (to keep the page clean). However, in order to allow this page to be
+able to use the taskController's scope variable, I had to add "$parent." to every ng-model binding variable.-->
+<!-- EDIT 21/10/2015 - the "$parent" prefixes could all be removed once I made the following changes:
+1) Remove the "controller" and "scope" portions from the Filters directive
+2) Change the Filters placeholder in tasksgrid.html from an ng-include to a standard directive, e.g. <filters></filters>
+This way, the filters.html page automatically uses the containing page's (tasksgrid.html) controller scope.
+-->
+<form class="navbar-form  well well-sm navbar-search" role="search">
+    <div class="form-group">
+        <label for="fileName" class="control-label">Filter by File Name:</label>
+        <!-- wait for half a sec before making the call-->
+        <input name="fileName" id="fileName" placeholder="Type / paste search text" class="input-sm taskSearchBox"
+               ng-model="fileName" ng-model-options="{ debounce: 500 }"
+               ng-change="onGetTasksWithFilters()"/>
+    </div>
+
+    <div class="form-group">
+        <label for="status" class="control-label">by Status:</label>
+        <select name="status" id="status" class="form-control"
+                ng-model="status"
+                ng-options="stat for stat in statusCodes"
+                ng-change="onGetTasksWithFilters()">
+            <option class="text-muted" value="" default selected disabled>Select a status</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="serverName" class="control-label">by Server:</label>
+        <select name="serverName" id="serverName" class="form-control"
+                ng-model="serverName"
+                ng-options="tran for tran in transporters"
+                ng-change="onGetTasksWithFilters()">
+            <option class="text-muted" value="" default selected disabled>Select a transporter</option>
+        </select>
+        <input type="submit" value="Clear" ng-click="onClearSearch()" class="btn btn-default"/>
+    </div>
+    <div id="spinner" class="form-group throbber-loader" ng-show="showSpinner"></div>
+
+    <!--Pagination div --->
+    <div class="pagination-div navbar-right paging" ng-show="transporterTasks.length > pageSize">
+        <button class="btn btn-default"
+                type="button" title="Previous page" ng-disabled="currentPage == 0"
+                ng-click="currentPage=currentPage-1"><span class="glyphicon glyphicon-menu-left"></span></button>
+        <span>Page {{ currentPage + 1 }} of {{ numberOfPages() }}</span>
+        <button class="btn btn-default" type="button" title="Next page"
+                ng-disabled="currentPage >= transporterTasks.length / pageSize - 1"
+                ng-click="currentPage = currentPage + 1"><span class="glyphicon glyphicon-menu-right"></span></button>
+    </div>
+</form>

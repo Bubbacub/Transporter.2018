@@ -1,0 +1,82 @@
+﻿.navbar-inner {
+    background:transparent;
+}
+.navbar-info {
+    font-size: small;
+    font-weight: bold;
+    color: #4C5050
+    
+}
+.navbar-banner {
+    line-height: 100px;
+    height: 100px;
+    padding-top: 25px;
+}
+.navbar-header {
+    vertical-align: central;
+}
+.transporter {
+    margin-left: 2px;
+}
+.noTasks {
+    font-size: large;
+    text-align: center
+}
+/*.text-success {
+    font-weight: bold;
+    font-size: small;
+}*/
+.text-error {
+    color: rgb(222, 60, 0);
+    font-weight: bold;
+    font-size: small;
+}
+.text-primary {
+    color: #4C5050;
+    font-weight: bold;
+    font-size: small;
+}
+.navbar-logo {
+    content: url("IMD_Logo.png");
+    opacity: 0.2;
+    padding-bottom: 50px;
+    padding-right: 20px;
+}
+.navbar-search {
+    padding-left: 5px;
+}
+.navbar-right  {
+    margin-right: 5px;
+    font-weight: bold;
+}
+.taskSearchBox {
+    width: 350px;
+}
+
+.version {
+    font-size: smaller;
+}
+.button .statsButtonText {
+    content: "Show Stats";
+}
+.button .statsButtonText-loading {
+    content: "Show Stats <i class=fa fa-refresh fa-spin></i>";
+}
+.button .statsButtonText-loaded {
+    content: "Hide Stats";
+}
+
+/*#tackiness img {
+    opacity:1;
+}*/
+.xmasBody {
+    background-image: url(Images/Transporter-Refueled-2.png);
+    opacity: 0.9;
+    background-size: contain;
+}
+
+#VersionNumber {
+    /*color: whitesmoke;
+    font-weight: bold;*/
+}
+

@@ -1,0 +1,44 @@
+﻿<div class="transporter container-fluid">
+    <filters></filters>
+    <footer></footer>
+</div>
+<table class="table table-hover table-striped table-condensed container-fluid" ng-show="transporterTasks.length">
+    <tr>
+        <th><a href='#' ng-click="sortBy = 'taskId'; sortOrder = !sortOrder"/>Task ID</th>
+        <th><a href='#' ng-click="sortBy = 'filename'; sortOrder = !sortOrder" />File Name</th>
+        <th><a href='#' ng-click="sortBy = 'createdDate'; sortOrder = !sortOrder" />Created Date</th>
+        <th><a href='#' ng-click="sortBy = 'status'; sortOrder = !sortOrder"/>Status</th>
+        <th><a href='#' ng-click="sortBy = 'processingStartedDate'; sortOrder = !sortOrder" />Started</th>
+        <th><a href='#' ng-click="sortBy = 'timeWaitingForFreeThread'; sortOrder = !sortOrder" />Time Waiting (Sec)</th>
+        <th><a href='#' ng-click="sortBy = 'transporter'; sortOrder = !sortOrder" />Transporter</th>
+        <th><a href='#' ng-click="sortBy = 'transferStarted'; sortOrder = !sortOrder" />Transfer Started</th>
+        <th><a href='#' ng-click="sortBy = 'destination'; sortOrder = !sortOrder" />Transfer Completed</th>
+        <th><a href='#' ng-click="sortBy = 'transferSpeed'; sortOrder = !sortOrder" />Transfer Speed (MB/s)</th>
+        <th><a href='#' ng-click="sortBy = 'errorDate'; sortOrder = !sortOrder" />Error Date</th>
+    </tr>
+    <tr ng-repeat="task in transporterTasks | pagination: currentPage * pageSize | limitTo: pageSize | orderBy: sortBy: sortOrder" 
+        ng-class="setRowColour(task.status)">
+        <td ng-model="task.TaskId">{{task.taskId}}</td>
+        <td title="Watch Folder: &#13;&#13; {{ task.watchFolder }}" tooltip-placement="top">{{task.filename}}</td>
+        <td>{{ task.createdDate | date:'dd-MM-yyyy HH:mm:ss' }} </td>
+        <td>{{ task.status}}</td>
+        <td>{{ task.processingStartedDate | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+        <td>
+            <div ng-show="task.timeWaitingForFreeThread > 0">{{ task.timeWaitingForFreeThread}}</div>
+        </td>
+        <td>{{ task.transporter}}</td>
+        <td>{{ task.transferStarted | date:'H:mm:ss' }}</td>
+        <td title="Destination: &#13;&#13; {{ task.destination }}" tooltip-placement="top">{{ task.transferCompleted | date:'H:mm:ss' }}</td>
+        <td>
+            <div ng-show="task.transferSpeed > 0">{{ task.transferSpeed / 1024 | number: 2 }}</div>
+        </td>
+        <td title="Error text:  &#13;&#13; {{ task.errorText }}" tooltip-placement="top">{{ task.errorDate | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+    </tr>
+</table>
+<table class="table container-fluid" ng-hide="transporterTasks.length">
+    <tr class="row noTasks">
+        <td>No tasks</td>
+    </tr>
+</table>
+
+

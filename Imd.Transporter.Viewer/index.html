@@ -1,0 +1,29 @@
+﻿<!DOCTYPE HTML>
+<html >
+
+<head class="container">
+    <title>Transporter Viewer</title>
+    <meta charset="utf-8"/>
+    <link rel="shortcut icon" type="image/x-icon" href="Content/Images/eye_blue.ico"/>
+    <link rel="stylesheet" href="http://css-spinners.com/css/spinners.css" type="text/css">
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+    <script src="Scripts/angular-resource.min.js"></script>
+    <script src="Scripts/jquery-2.1.4.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="AngularApp/TransporterViewerApp.js"></script>
+    <script src="AngularApp/BannerController.js"></script>
+    <script src="AngularApp/TasksController.js"></script>
+    <script src="AngularApp/TransporterService.js"></script>
+    <script src="AngularApp/StatsController.js"></script>
+    <!--<script src="AngularApp/interpolateServiceDecorator.js"></script>-->
+    <link href="Content/bootstrap.min.css" rel="stylesheet"/>
+    <link href="Content/Transporter.css" rel="stylesheet"/>
+</head>
+<body ng-app="transporterViewer">
+    <banner ng-controller="bannerController"></banner>
+    <tasksgrid ng-controller="tasksController"></tasksgrid>
+</body>
+</html>
